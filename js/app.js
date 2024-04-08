@@ -1,34 +1,48 @@
 /**PILAS  */
 
-const callStack = [
-  'a(): returns "freeCodeCamp " + b()', // por ultimo a esta funcion que retorna toda la cadena 
-  'b(): returns "is " + c()', //Luego a esta funcion 
-  'c(): returns "awesome!"' // primero se llama a esta funcion
-];
+// const callStack = [
+//   'a(): returns "freeCodeCamp " + b()', // por ultimo a esta funcion que retorna toda la cadena 
+//   'b(): returns "is " + c()', //Luego a esta funcion 
+//   'c(): returns "awesome!"' // primero se llama a esta funcion
+// ];
 
 
-function a (){
-  debugger
-  return "freeCodeCamp " + b()
-}
+// function a (){
+//   debugger
+//   return "freeCodeCamp " + b()
+// }
 
-const b = () => {
-  debugger
-  return "is " + c();
- }
+// const b = () => {
+//   debugger
+//   return "is " + c();
+//  }
  
- const c = () => {
-  debugger
-   return "awesome!"
- }
+//  const c = () => {
+//   debugger
+//    return "awesome!"
+//  }
 
-console.log(a());
+// console.log(a());
 
 /**Variables */
 
 const numberInput = document.getElementById("number-input");
 const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");
+
+//FUNCION RECURSIVA  es una función que se llama a sí misma una y otra vez.
+const countDownAndUp  = (number) =>{
+
+  console.log (number);
+  if (number == 0) {
+    console.log ("Reached base case");
+    return;
+  }else{
+    countDownAndUp(number - 1)
+    console.log(number);
+  }
+}
+countDownAndUp(3);
 
 /**Covierte el valor decimal en binario */
 
