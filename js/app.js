@@ -31,31 +31,31 @@ const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");
 
 //FUNCION RECURSIVA  es una función que se llama a sí misma una y otra vez.
-const countDownAndUp  = (number) =>{
+// const countDownAndUp  = (number) =>{
 
-  console.log (number);
-  if (number == 0) {
-    console.log ("Reached base case");
-    return;
-  }else{
-    countDownAndUp(number - 1)
-    console.log(number);
-  }
-}
-countDownAndUp(3);
+//   console.log (number);
+//   if (number == 0) {
+//     console.log ("Reached base case");
+//     return;
+//   }else{
+//     countDownAndUp(number - 1)
+//     console.log(number);
+//   }
+// }
+// countDownAndUp(3);
 
 /**Covierte el valor decimal en binario */
 
-function decimalToBinary(input) {
-  let binary = "";
-  if (input == 0) {
-    binary = "0";
+const decimalToBinary = (input) =>{
+  debugger
+  if (input === 0 || input === 1){ //caso base donde se sale de la funcion
+    return String(input);
   }
-  while (input > 0) {
-    input = Math.floor(input / 2);
-    binary = (input % 2) + binary;
+  else{ //caso recursivo
+    console.log(input);
+    return decimalToBinary(Math.floor(input / 2)) + (input % 2);
+   
   }
-  result.innerText = binary;
 }
 
 
@@ -64,8 +64,8 @@ const checkUserInput = () => {
     alert("Please provide a decimal number");
     return;
   }
-
-  decimalToBinary(parseInt(numberInput.value));
+  debugger
+  result.textContent = decimalToBinary(parseInt(numberInput.value));
   numberInput.value = "";
 };
 
