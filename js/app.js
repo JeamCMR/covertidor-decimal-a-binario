@@ -1,3 +1,29 @@
+/**PILAS  */
+
+const callStack = [
+  'a(): returns "freeCodeCamp " + b()', // por ultimo a esta funcion que retorna toda la cadena 
+  'b(): returns "is " + c()', //Luego a esta funcion 
+  'c(): returns "awesome!"' // primero se llama a esta funcion
+];
+
+
+function a (){
+  debugger
+  return "freeCodeCamp " + b()
+}
+
+const b = () => {
+  debugger
+  return "is " + c();
+ }
+ 
+ const c = () => {
+  debugger
+   return "awesome!"
+ }
+
+console.log(a());
+
 /**Variables */
 
 const numberInput = document.getElementById("number-input");
@@ -7,43 +33,24 @@ const result = document.getElementById("result");
 /**Covierte el valor decimal en binario */
 
 function decimalToBinary(input) {
-  const inputs = [];
-  const quotients = [];
-  const remainders = [];
-
-    if (input == 0) {
-        result.innerText = "0";
-        return
-    }
-
-  while (input > 0) {
-    const quotient = Math.floor(input / 2);
-    const remainder = input % 2; //Los retos de la division vienen siendo la conversion al numero decimal
-
-    inputs.push(input);
-    quotients.push(quotient);
-    remainders.push(remainder);
-
-    input = quotient; //Variable de control
+  let binary = "";
+  if (input == 0) {
+    binary = "0";
   }
-  console.log ("Inputs: ",  inputs);
-  console.log("Quotients: ",quotients);
-  console.log("Remainders: ",remainders);
-  result.innerText = remainders.reverse().join("");
+  while (input > 0) {
+    input = Math.floor(input / 2);
+    binary = (input % 2) + binary;
+  }
+  result.innerText = binary;
 }
 
-/**valida el valor en la entrada numérica */
 
 const checkUserInput = () => {
-  // null,undefined,0 son valores false
-  /*
-    La funcion isNaN() toma una cadena o numero como parametro y evalua si es un NaN y devuelve True o false
-    */
   if (!numberInput.value || isNaN(parseInt(numberInput.value))) {
-    window.alert("Ingrese un valor decimal");
-    result.innerText= "";
+    alert("Please provide a decimal number");
     return;
   }
+
   decimalToBinary(parseInt(numberInput.value));
   numberInput.value = "";
 };
