@@ -50,17 +50,26 @@ const animationData = [
   {
     inputVal:5, //valor de entrada cada vez que se ejecuta su funcion recursiva
     marginTop:300, //margen superior para los elementos DOM que se agregan
-    addElDelay:1000
+    addElDelay:1000,
+    msg:'decimalToBinary(5) returns "10" + 1 (5 % 2). Then it pops off the stack.',
+    showMsgDelay:15000 ,
+    removeElDelay:20000
   },
   {
     inputVal: -2,
-    marginTop: 200,
-    addElDelay: 1500
+    marginTop: -200,
+    addElDelay: 1500,
+    msg:'decimalToBinary(2) returns "1" + 0 (2 % 2) and gives that value to the stack below. Then it pops off the stack.',
+    showMsgDelay:10000,
+    removeElDelay:15000
   },
   {
     inputVal: 1,
     marginTop: -200,
-    addElDelay: 2000
+    addElDelay: 2000,
+    msg:'decimalToBinary(1) returns "1" (base case) and gives that value to the stack below. Then it pops off the stack.',
+    showMsgDelay:5000,
+    removeElDelay:10000
   }
 ];
 
@@ -77,14 +86,34 @@ const decimalToBinary = (input) =>{
   }
 }
 
-
+//Funcion de animacion
 const showAnimation = () =>{
   result.innerText = "Call Stack Animation";
   animationData.forEach( (obj) => {
     setTimeout(() => {
-      animationContainer.innerHTML += ``;
+      animationContainer.innerHTML += `
+      <p id="${obj.inputVal}" style="margin-top:${obj.marginTop}px; overflow:hidden" class="animation-frame">
+      decimalToBinary(${obj.inputVal})
+      </p>
+      `;
     }, obj.addElDelay);
+    
+    setTimeout(() => {
+      const mens = document.getElementById(obj.inputVal)
+      mens.textContent = obj.msg;
+    }, obj.showMsgDelay);
+
+    setTimeout(() => {
+      const delte = document.getElementById(obj.inputVal);
+      delte.remove();
+    }, obj.removeElDelay);
+
   });
+
+  setTimeout(() => {
+      result.textContent = decimalToBinary(5);
+  }, 20000);
+
 }
 
 const checkUserInput = () => {
